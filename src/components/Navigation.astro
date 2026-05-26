@@ -1,0 +1,32 @@
+---
+import ThemeToggleBtn from "./ThemeToggleBtn.astro";
+import {
+    PHOTO_ALBUM_TITLE,
+    MAKEUP_TUTORIALS_TITLE,
+    ABOUT_TITLE,
+} from "../lib/constants";
+const { activePage } = Astro.props;
+---
+
+<ul class="nav-links">
+    <li>
+        <a
+            href="/photoalbum/"
+            class={activePage === PHOTO_ALBUM_TITLE ? "active" : ""}
+            >PHOTO ALBUM</a
+        >
+    </li>
+    <li>
+        <a
+            href="/makeuptutorials/"
+            class={activePage === MAKEUP_TUTORIALS_TITLE ? "active" : ""}
+            >MAKEUP TUTORIALS</a
+        >
+    </li>
+    <li>
+        <a href="/about/" class={activePage === ABOUT_TITLE ? "active" : ""}
+            >ABOUT</a
+        >
+    </li>
+    <ThemeToggleBtn />
+</ul>

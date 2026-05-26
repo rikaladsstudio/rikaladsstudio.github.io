@@ -1,37 +1,19 @@
 ---
+import Navigation from "./Navigation.astro";
 import SocialHandle from "./SocialHandle.astro";
-import ThemeToggleBtn from "./ThemeToggleBtn.astro";
-const { activePage } = Astro.props;
+import NavigationMenu from "./NavigationMenu.astro";
+import NavigationMobileMenu from "./NavigationMobileMenu.astro";
 
-const aboutTitle = "About";
-const photoAlbumTitle = "Photo Album";
-const makeupTutorialsTitle = "Makeup Tutorials";
+const { activePage } = Astro.props;
 ---
 
 <header>
     <nav>
-        <SocialHandle />
-        <ul class="nav-links">
-            <li>
-                <a
-                    href="#"
-                    class={activePage === photoAlbumTitle ? "active" : ""}
-                    >PHOTO ALBUM</a
-                >
-            </li>
-            <li>
-                <a
-                    href="#"
-                    class={activePage === makeupTutorialsTitle ? "active" : ""}
-                    >MAKEUP TUTORIALS</a
-                >
-            </li>
-            <li>
-                <a href="#" class={activePage === aboutTitle ? "active" : ""}
-                    >ABOUT</a
-                >
-            </li>
-            <ThemeToggleBtn />
-        </ul>
+        <div class="navbar">
+            <SocialHandle />
+            <NavigationMenu />
+            <Navigation activePage={activePage} />
+        </div>
+        <NavigationMobileMenu activePage={activePage} />
     </nav>
 </header>

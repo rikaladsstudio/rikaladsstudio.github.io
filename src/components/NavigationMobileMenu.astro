@@ -1,0 +1,28 @@
+---
+import Navigation from "./Navigation.astro";
+const { activePage } = Astro.props;
+---
+
+<div id="navigation-mobile-menu">
+    <div class="nav-row">
+        <a
+            aria-expanded="true"
+            aria-controls="navigation-mobile-menu"
+            id="navigation-close-btn"
+        >
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <use href="#icon-close"></use>
+            </svg>
+        </a>
+    </div>
+
+    <Navigation />
+    <div class="nav-row"></div>
+    <a
+        id="mobile-theme-toggle-btn"
+        aria-label="Toggle dark/light theme"
+        title="Toggle dark/light theme"
+        aria-pressed="false"
+    >
+    </a>
+</div>
