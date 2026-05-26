@@ -5,6 +5,7 @@ const lightModeIcon = document.getElementById('theme-icon-sun') as HTMLFormEleme
 const darkModeIcon = document.getElementById('theme-icon-moon') as HTMLFormElement;
 const navigationMenuBtn = document.getElementById('navigation-menu-btn') as HTMLFormElement;
 const navigationCloseBtn = document.getElementById('navigation-close-btn') as HTMLFormElement;
+const lightbox = document.getElementById('lightbox') as HTMLFormElement;
 const footerYearTxt = document.getElementById('footer-year') as HTMLFormElement;
 
 
@@ -29,6 +30,11 @@ function toggleMobileNavigationMenu() {
     const isExpanded = navigationMenuBtn.getAttribute('aria-expanded') === 'true';
     navigationMenuBtn.setAttribute('aria-expanded', `${!isExpanded}`);
     navigationCloseBtn.setAttribute('aria-expanded', `${!isExpanded}`);
+    if (!isExpanded) {
+        openLightbox(null);
+    } else {
+        closeLightbox();
+    }
 }
 
 function toggleDarkLightTheme() {
@@ -44,9 +50,6 @@ function toggleDarkLightTheme() {
 
 themeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
 mobileThemeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
-
-
-
 navigationMenuBtn?.addEventListener('click', toggleMobileNavigationMenu);
 navigationCloseBtn?.addEventListener('click', toggleMobileNavigationMenu);
 
@@ -56,9 +59,24 @@ window.addEventListener('resize', () => {
     if (window.innerWidth > 700 && isExpanded) {
         navigationMenuBtn.setAttribute('aria-expanded', `${!isExpanded}`);
         navigationCloseBtn.setAttribute('aria-expanded', `${!isExpanded}`);
+        closeLightbox();
 
     }
 });
+
+/* ════════════════════════════════════════════
+   LIGHTBOX
+   ════════════════════════════════════════════ */
+function openLightbox(idx: any) {
+    const currentLbIndex = idx;
+    //updateLightbox();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+}
 
 
 

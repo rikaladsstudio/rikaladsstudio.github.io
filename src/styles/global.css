@@ -29,6 +29,8 @@
     --navbar-link-color-active: rgba(245, 242, 237, 0.4);
     --navbar-social-link-color-hover: var(--white);
 
+    --lightbox-bg-color: #ff0000;
+
 
 
 
@@ -54,6 +56,8 @@
     --navbar-link-color-hover: rgba(170, 100, 24, 0.7);
     --navbar-link-color-active: var(--white);
     --navbar-social-link-color-hover: var(--black);
+
+    --lightbox-bg-color: #ff0000;
 
     --footer-bg-color: #F5F2ED;
     --footer-text-color: rgba(26, 20, 14, 0.7);
@@ -254,6 +258,26 @@ body::after {
     z-index: 1;
     padding: 160px 3rem 80px;
     text-align: center;
+}
+
+/* ── LIGHTBOX ── */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--lightbox-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(12px);
+}
+
+#lightbox.open {
+    opacity: 1;
+    pointer-events: all;
 }
 
 /* ── FOOTER ── */

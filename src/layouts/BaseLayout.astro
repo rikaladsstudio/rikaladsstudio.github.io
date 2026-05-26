@@ -22,6 +22,7 @@ const { pageTitle } = Astro.props;
         <Header activePage={pageTitle} />
         <SvgSprite />
         <slot />
+        <div id="lightbox"></div>
         <Footer />
         <script>
             import "../scripts/menu.ts";
