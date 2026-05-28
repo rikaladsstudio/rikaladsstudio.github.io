@@ -1,6 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
-import makeupTutorials from "../data/_makeup_tutorials.json";
+import makeupTutorials from "../data/makeup_tutorials.json";
 import TutorialCard from "./TutorialCard.astro";
 
 // Convert date from "YYYY-MM-DD" to "Month Year" format
@@ -61,7 +61,9 @@ const thumbnailList = Object.values(makeupTutorials.tutorials).map(
     </section>
 </div>
 <!-- TODO: Add empty state if no tutorials are available -->
+<!--
 <div class="empty-state" style="display: none;">
     <div class="empty-state-icon">✦</div>
     <p>No tutorial available.</p>
 </div>
+-->
