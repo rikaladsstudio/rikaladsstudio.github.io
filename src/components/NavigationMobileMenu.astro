@@ -1,5 +1,9 @@
 ---
 import Navigation from "./Navigation.astro";
+import {
+    SWITCH_TO_DARK_MODE_TXT,
+    SWITCH_TO_LIGHT_MODE_TXT,
+} from "../lib/constants";
 const { activePage } = Astro.props;
 ---
 
@@ -13,16 +17,37 @@ const { activePage } = Astro.props;
             <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
                 <use href="#icon-close"></use>
             </svg>
+            <span>CLOSE</span>
         </a>
     </div>
 
-    <Navigation />
-    <div class="nav-row"></div>
-    <a
-        id="mobile-theme-toggle-btn"
-        aria-label="Toggle dark/light theme"
-        title="Toggle dark/light theme"
-        aria-pressed="false"
-    >
-    </a>
+    <Navigation activePage={activePage} />
+    <div class="nav-row">
+        <a
+            id="mobile-light-mode-btn"
+            class="mobile-dark-light-toggle-btn"
+            aria-label="Switch to light mode"
+            title="Switch to light mode"
+            aria-pressed="false"
+            style="display: none"
+        >
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <use href="#icon-light-mode"></use>
+            </svg>
+            <span>{SWITCH_TO_LIGHT_MODE_TXT}</span>
+        </a>
+        <a
+            id="mobile-dark-mode-btn"
+            class="mobile-dark-light-toggle-btn"
+            aria-label="Switch to dark mode"
+            title="Switch to dark mode"
+            aria-pressed="false"
+            style="display:none"
+        >
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <use href="#icon-dark-mode"></use>
+            </svg>
+            <span>{SWITCH_TO_DARK_MODE_TXT}</span>
+        </a>
+    </div>
 </div>

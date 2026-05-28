@@ -1,6 +1,8 @@
 import { LIGHT_THEME, DARK_THEME, SWITCH_TO_LIGHT_MODE_TXT, SWITCH_TO_DARK_MODE_TXT } from '../lib/constants'
 const themeToggleBtn = document.getElementById('theme-toggle-btn') as HTMLFormElement;
 const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle-btn') as HTMLFormElement;
+const mobileLightModeBtn = document.getElementById('mobile-light-mode-btn') as HTMLFormElement;
+const mobileDarkModeBtn = document.getElementById('mobile-dark-mode-btn') as HTMLFormElement;
 const lightModeIcon = document.getElementById('theme-icon-sun') as HTMLFormElement;
 const darkModeIcon = document.getElementById('theme-icon-moon') as HTMLFormElement;
 const navigationMenuBtn = document.getElementById('navigation-menu-btn') as HTMLFormElement;
@@ -17,9 +19,8 @@ function init() {
     document.documentElement.setAttribute('data-theme', saved);
     lightModeIcon.style.display = saved === DARK_THEME ? 'block' : 'none';
     darkModeIcon.style.display = saved === DARK_THEME ? 'none' : 'block';
-
-    themeToggleBtn.title = saved === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
-    mobileThemeToggleBtn.innerText = saved === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
+    mobileLightModeBtn.style.display = saved === DARK_THEME ? 'flex' : 'none';
+    mobileDarkModeBtn.style.display = saved === DARK_THEME ? 'none' : 'flex';
     footerYearTxt.textContent = `${new Date().getFullYear()}`;
 
 }
@@ -41,14 +42,17 @@ function toggleDarkLightTheme() {
     document.documentElement.setAttribute('data-theme', next);
     lightModeIcon.style.display = next === DARK_THEME ? 'block' : 'none';
     darkModeIcon.style.display = next === DARK_THEME ? 'none' : 'block';
+    mobileLightModeBtn.style.display = next === DARK_THEME ? 'flex' : 'none';
+    mobileDarkModeBtn.style.display = next === DARK_THEME ? 'none' : 'flex';
     localStorage.setItem('theme', next);
     themeToggleBtn.title = next === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
-    mobileThemeToggleBtn.innerText = next === DARK_THEME ? SWITCH_TO_LIGHT_MODE_TXT : SWITCH_TO_DARK_MODE_TXT;
 }
 
 
 themeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
-mobileThemeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
+// mobileThemeToggleBtn?.addEventListener('click', toggleDarkLightTheme);
+mobileDarkModeBtn?.addEventListener('click', toggleDarkLightTheme);
+mobileLightModeBtn?.addEventListener('click', toggleDarkLightTheme);
 navigationMenuBtn?.addEventListener('click', toggleMobileNavigationMenu);
 navigationCloseBtn?.addEventListener('click', toggleMobileNavigationMenu);
 
