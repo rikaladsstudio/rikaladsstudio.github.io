@@ -25,12 +25,16 @@ const { index, name, date, characterList, tags, qrPostUrl } = Astro.props;
         onerror="this.onerror=null; this.src='https://placehold.co/800x1140'"
         loading="lazy"
     />
-    <a href={qrPostUrl || "#"} target="_blank" class="qr-badge">
-        <svg fill="currentColor">
-            <use href="#icon-qr"></use>
-        </svg>
-        <span>QR</span>
-    </a>
+    {
+        qrPostUrl && (
+            <a href={qrPostUrl} target="_blank" class="qr-badge">
+                <svg fill="currentColor">
+                    <use href="#icon-qr" />
+                </svg>
+                <span>QR</span>
+            </a>
+        )
+    }
     <div class="card-body">
         <p class="card-title">{name}</p>
         <p class="card-date">{date}</p>

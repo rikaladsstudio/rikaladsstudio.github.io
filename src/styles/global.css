@@ -12,6 +12,9 @@
     --grey-3: #4E4749;
     --max-width-page: 1300px;
 
+    --card-main-text-color: #ffffff;
+    --card-subtext-color: rgba(255, 255, 255, 0.7);
+
 }
 
 [data-theme="dark"] {
@@ -41,6 +44,9 @@
     --hero-text-color: rgba(245, 242, 237, 0.6);
 
     --count-text-color: rgba(245, 242, 237, 0.7);
+
+    --qr-badge-bg-color: rgba(26, 20, 14, 0.8);
+    --qr-badge-text-color: #C5C2D3;
 
     /* --footer-bg-color: #040A12; */
     --footer-border-color: rgba(242, 242, 242, 0.1);
@@ -73,6 +79,9 @@
 
     --count-text-color: rgba(78, 71, 73, 0.8);
 
+    --qr-badge-bg-color: rgba(242, 242, 242, 0.8);
+    --qr-badge-text-color: #4E4749;
+
     /* --footer-bg-color: transparent; */
     --footer-border-color: rgba(78, 71, 73, 0.1);
     --footer-text-color: #4E4749;
@@ -88,6 +97,19 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+button {
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-align: inherit;
+    letter-spacing: inherit;
 }
 
 html {
@@ -399,8 +421,7 @@ body::after {
     flex-direction: column;
 }
 
-#makeup-tutorials-container .total,
-#photo-album-container .total {
+.total {
     font-size: 1.1rem;
     letter-spacing: 0.3rem;
     margin-bottom: 1.6rem;
@@ -409,25 +430,24 @@ body::after {
     color: var(--count-text-color);
 }
 
-#makeup-tutorials-container .grid,
-#photo-album-container .grid {
+.grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+}
+
+#makeup-tutorials-container .grid {
     gap: 16px;
 }
 
-#makeup-tutorials-container .tutorial-card,
-#photo-album-container .photo-card {
+#makeup-tutorials-container .tutorial-card {
     break-inside: avoid;
     display: block;
-    /* max-width: 310px; */
     margin: 0 auto 30px;
     position: relative;
     overflow: hidden;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     border-radius: 6px 6px 0 0;
 }
-
 
 #makeup-tutorials-container .tutorial-card a {
     display: flex;
@@ -446,14 +466,13 @@ body::after {
     z-index: 1;
 }
 
-#makeup-tutorials-container .tutorial-card:hover img,
-#photo-album-container .photo-card:hover img {
+.tutorial-card:hover img,
+.photo-card:hover img {
     filter: brightness(1.05) saturate(1.05);
     transform: scale(1.08);
 }
 
-#makeup-tutorials-container .tutorial-card .card-body,
-#photo-album-container .photo-card .card-body {
+#makeup-tutorials-container .tutorial-card .card-body {
     display: flex;
     position: absolute;
     right: 0;
@@ -475,7 +494,7 @@ body::after {
     font-size: 1.1rem;
     font-weight: 500;
     letter-spacing: 0.1rem;
-    color: var(--white);
+    color: var(--card-main-text-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -485,9 +504,104 @@ body::after {
     font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: 0.1rem;
-    color: var(--white);
+    color: var(--card-main-text-color);
     text-transform: uppercase;
 }
+
+/* ── PHOTO ALBUM CONTENT ── */
+#photo-album-container .grid {
+    gap: 0.7rem;
+}
+
+#photo-album-container .photo-card {
+    break-inside: avoid;
+    display: block;
+    margin: 0 auto 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+}
+
+#photo-album-container .qr-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: var(--qr-badge-bg-color);
+    color: var(--qr-badge-text-color);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--qr-badge-text-color);
+    border-radius: 1rem;
+    z-index: 2;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+}
+
+#photo-album-container .qr-badge:hover {
+    opacity: 1;
+}
+
+
+.photo-card .qr-badge svg {
+    width: 14px;
+    height: 14px;
+}
+
+.photo-card .qr-badge span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.photo-card .card-body {
+    display: flex;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid var(--white);
+    /* The blur effect applied to the background behind the element */
+    backdrop-filter: blur(5px);
+    mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 50%);
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    padding: 2rem 1rem 0.6rem;
+    /* Ensure content sits above the blur */
+    z-index: 2;
+    transition: opacity 0.4s ease;
+    opacity: 0;
+}
+
+.photo-card:hover .card-body {
+    opacity: 1;
+}
+
+#photo-album-container .card-title {
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15rem;
+    color: var(--card-main-text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: -0.3rem;
+}
+
+#photo-album-container .card-date {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    color: var(--card-subtext-color);
+    text-transform: uppercase;
+}
+
+
 
 
 
@@ -543,12 +657,14 @@ footer {
     }
 
     .hero,
-    #makeup-tutorials-container {
+    #makeup-tutorials-container,
+    #photo-album-container {
         margin-left: 3rem;
         margin-right: 3rem;
     }
 
-    #makeup-tutorials-container .grid {
+    #makeup-tutorials-container .grid,
+    #photo-album-container .grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -559,7 +675,8 @@ footer {
         padding: 0 1rem;
     }
 
-    #makeup-tutorials-container .grid {
+    #makeup-tutorials-container .grid,
+    #photo-album-container .grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -580,7 +697,8 @@ footer {
     }
 
     .hero,
-    #makeup-tutorials-container {
+    #makeup-tutorials-container,
+    #photo-album-container {
         margin-left: 2rem;
         margin-right: 2rem;
     }
@@ -598,7 +716,8 @@ footer {
         font-size: 0.9rem;
     }
 
-    #makeup-tutorials-container .grid {
+    #makeup-tutorials-container .grid,
+    #photo-album-container .grid {
         grid-template-columns: repeat(1, 1fr);
     }
 

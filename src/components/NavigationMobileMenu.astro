@@ -9,7 +9,7 @@ const { activePage } = Astro.props;
 
 <div id="navigation-mobile-menu">
     <div class="nav-row">
-        <a
+        <button
             aria-expanded="true"
             aria-controls="navigation-mobile-menu"
             id="navigation-close-btn"
@@ -18,12 +18,12 @@ const { activePage } = Astro.props;
                 <use href="#icon-close"></use>
             </svg>
             <span>CLOSE</span>
-        </a>
+        </button>
     </div>
 
     <Navigation activePage={activePage} />
     <div class="nav-row">
-        <a
+        <button
             id="mobile-light-mode-btn"
             class="mobile-dark-light-toggle-btn"
             aria-label="Switch to light mode"
@@ -35,8 +35,8 @@ const { activePage } = Astro.props;
                 <use href="#icon-light-mode"></use>
             </svg>
             <span>{SWITCH_TO_LIGHT_MODE_TXT}</span>
-        </a>
-        <a
+        </button>
+        <button
             id="mobile-dark-mode-btn"
             class="mobile-dark-light-toggle-btn"
             aria-label="Switch to dark mode"
@@ -48,6 +48,6 @@ const { activePage } = Astro.props;
                 <use href="#icon-dark-mode"></use>
             </svg>
             <span>{SWITCH_TO_DARK_MODE_TXT}</span>
-        </a>
+        </button>
     </div>
 </div>
