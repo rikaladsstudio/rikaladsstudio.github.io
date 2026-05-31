@@ -1,0 +1,40 @@
+---
+interface Props {
+    index: number;
+    name: string;
+    date: string;
+    characterList: string[];
+    /*characterCount: number;*/
+    tags: string[];
+    qrPostUrl: string | null;
+
+    /*id: string;
+    thumbnailPath: string;
+    title: string;
+    date: string;
+    postUrl: string;*/
+}
+
+const { index, name, date, characterList, tags, qrPostUrl } = Astro.props;
+---
+
+<div
+    class="photo-card"
+    data-index={index}
+    data-characters={characterList.join(",")}
+    data-character-count={characterList.length}
+    data-tags={tags.join(",")}
+    data-has-qr={qrPostUrl !== null}
+>
+    <img src={`assets/photos/${index}.webp`} alt={name} loading="lazy" />
+    <a href={qrPostUrl || "#"} target="_blank" class="qr-badge">
+        <svg fill="currentColor">
+            <use href="#icon-qr"></use>
+        </svg>
+        <span>QR</span>
+    </a>
+    <div class="overlay-content">
+        <p class="overlay-title">{name}</p>
+        <p class="overlay-date">{date}</p>
+    </div>
+</div>

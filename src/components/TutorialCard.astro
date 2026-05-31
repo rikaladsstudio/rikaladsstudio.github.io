@@ -9,7 +9,7 @@ interface Props {
 const { thumbnailPath, title, date, postUrl } = Astro.props;
 ---
 
-<div class="card">
+<div class="tutorial-card">
     <a href={`${postUrl}`} target="_blank">
         <img src={thumbnailPath} alt={title} />
         <div class="card-body">
