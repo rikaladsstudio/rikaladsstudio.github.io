@@ -14,7 +14,9 @@ const thumbnailList = Object.values(photoGalleryJson.images).map(
     },
 );
 // get unique characters
-const characters = [...new Set(thumbnailList.flatMap((image) => image.characters))];
+const characters = [
+    ...new Set(thumbnailList.flatMap((image) => image.characters)),
+];
 ---
 
 <div id="photo-gallery-container">
@@ -205,6 +207,10 @@ const characters = [...new Set(thumbnailList.flatMap((image) => image.characters
                 document.querySelector<HTMLButtonElement>(".close-button");
 
             let currentIndex = -1;
+            let touchstartX = 0;
+            let touchendX = 0;
+            let touchstartY = 0;
+            let touchendY = 0;
 
             function showImageAtIndex(index: number): void {
                 const lightboxImageContainers =
@@ -309,6 +315,49 @@ const characters = [...new Set(thumbnailList.flatMap((image) => image.characters
                 if (e.key === "ArrowLeft") showPreviousImage();
                 if (e.key === "ArrowRight") showNextImage();
             });
+
+            lightboxDialog?.addEventListener(
+                "touchstart",
+                function (event) {
+                    touchstartX = event.changedTouches[0].screenX;
+                    touchstartY = event.changedTouches[0].screenY;
+                },
+                false,
+            );
+
+            lightboxDialog?.addEventListener(
+                "touchend",
+                function (event) {
+                    touchendX = event.changedTouches[0].screenX;
+                    touchendY = event.changedTouches[0].screenY;
+                    handleGesture();
+                },
+                false,
+            );
+
+            function handleGesture() {
+                if (touchendX < touchstartX) {
+                    // Swipe left
+                    showNextImage();
+                }
+
+                if (touchendX > touchstartX) {
+                    // Swipe right
+                    showPreviousImage();
+                }
+
+                // if (touchendY < touchstartY) {
+                //     console.log("Swiped Up");
+                // }
+
+                // if (touchendY > touchstartY) {
+                //     console.log("Swiped Down");
+                // }
+
+                // if (touchendY === touchstartY) {
+                //     console.log("Tap");
+                // }
+            }
         });
     </script>
 </div>

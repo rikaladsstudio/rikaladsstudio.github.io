@@ -707,6 +707,14 @@ body::after {
     font-size: 0.9rem;
     letter-spacing: 0.3rem;
     padding: 0 16px;
+
+    &:focus {
+        /* 
+        need to add accessibility support
+        outline: 3px solid var(--white);
+        outline-offset: 3px; */
+        outline: none;
+    }
 }
 
 .close-button svg {
@@ -966,6 +974,7 @@ footer {
 
     .lightbox-tags {
         margin-bottom: 10px;
+
         ul {
             gap: 4px;
         }
