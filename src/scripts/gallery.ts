@@ -1,6 +1,7 @@
 interface GalleryElements {
     allPhotos: NodeListOf<HTMLDivElement>;
     totalPhotoCountTxt: HTMLElement | null;
+    emptyState: HTMLElement | null;
     filterClearBtn: HTMLButtonElement | null;
     characterFilterBtns: NodeListOf<HTMLButtonElement>;
     photoModeFilterBtns: NodeListOf<HTMLButtonElement>;
@@ -23,6 +24,7 @@ function initializeVariables() {
     const elements: GalleryElements = {
         allPhotos: document.querySelectorAll(".photo-card"),
         totalPhotoCountTxt: document.getElementById("total-photo-count"),
+        emptyState: document.getElementById("gallery-empty-state"),
         filterClearBtn: document.getElementById("filter-clear-btn") as HTMLButtonElement | null,
         characterFilterBtns: document.querySelectorAll("#character-filters button.pill:not([data-character-all])") as NodeListOf<HTMLButtonElement>,
         photoModeFilterBtns: document.querySelectorAll("#photo-mode-filters button.pill:not([data-pm-all])") as NodeListOf<HTMLButtonElement>,
@@ -133,7 +135,11 @@ function renderGallery(state: GalleryState, elements: GalleryElements) {
 
     // Update total count
     if (elements.totalPhotoCountTxt) {
-        elements.totalPhotoCountTxt.textContent = `${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size !== 1 ? "S" : ""}`;
+        if (state.filteredPhotoIndices.size === 0) {
+            elements.totalPhotoCountTxt.textContent = "";
+        } else {
+            elements.totalPhotoCountTxt.textContent = `${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size >= 1 ? "S" : ""}`;
+        }
     }
 
     // Show all if no filters applied
@@ -148,6 +154,11 @@ function renderGallery(state: GalleryState, elements: GalleryElements) {
     for (const photo of elements.allPhotos) {
         const index = parseInt(photo.dataset.index || "-1");
         photo.classList.toggle("hidden", !state.filteredPhotoIndices.has(index));
+    }
+
+    // Show empty state if no photos match
+    if (elements.emptyState) {
+        elements.emptyState.classList.toggle("visible", state.filteredPhotoIndices.size === 0);
     }
 }
 

@@ -622,6 +622,29 @@ body::after {
     height: 16px;
 }
 
+/* ── EMPTY STATE ──  */
+#gallery-empty-state {
+    display: none;
+    text-align: center;
+    padding: 5rem 0;
+    color: var(--empty-state-text-color);
+}
+
+#gallery-empty-state.visible {
+    display: block;
+}
+
+#gallery-empty-state p {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
+}
+
+#gallery-empty-state .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
 
 /* ── FOOTER ── */
 footer {

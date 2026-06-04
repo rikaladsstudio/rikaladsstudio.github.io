@@ -1,5 +1,5 @@
 ---
-import photoGalleryJson from "../data/photo_gallery_test.json";
+import photoGalleryJson from "../data/photo_gallery.json";
 import PhotoCard from "./PhotoCard.astro";
 import { formatDate } from "../utils/helper";
 
@@ -110,11 +110,10 @@ const tags = [...new Set(thumbnailList.flatMap((image) => image.tags))].sort(
                 ))
             }
         </div>
-        <!-- <div class="empty-state" id="empty-state">
-            <div class="empty-state-icon">✦</div>
-            <p>No images match the selected filters.</p>
-        </div>-->
+        <div id="gallery-empty-state">
+            <div class="icon">✦</div>
+            <p>No photos match the selected filters.</p>
+        </div>
     </section>
-    <!-- photoData should be updated based on its index when a PhotoCard is clicked -->
     <script src="../scripts/gallery.ts"></script>
 </div>
