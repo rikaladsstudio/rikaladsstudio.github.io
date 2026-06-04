@@ -1,0 +1,61 @@
+---
+interface Props {
+    characters: string[];
+    tags: string[];
+}
+const { characters, tags } = Astro.props;
+---
+
+<section id="filter-section">
+    <div class="filter-header">
+        <h2>Filter</h2>
+        <button id="filter-clear-btn" aria-label="clear filter">
+            <span>RESET ALL</span>
+        </button>
+    </div>
+    <div class="filter-content">
+        <div class="filter-group">
+            <span class="filter-label">CHARACTERS</span>
+            <div class="filter-pills" id="character-filters">
+                <button class="pill active" data-character-all
+                    >All Characters</button
+                >
+                {
+                    characters.map((character) => (
+                        <button class="pill" data-character={character}>
+                            {character}
+                        </button>
+                    ))
+                }
+            </div>
+        </div>
+        <div class="filter-group">
+            <span class="filter-label">PHOTO MODES</span>
+            <div class="filter-pills" id="photo-mode-filters">
+                <button class="pill active" data-pm-all>All Modes</button>
+                <button class="pill" data-pm="solo">Solo</button>
+                <button class="pill" data-pm="duo">Duo</button>
+                <button class="pill" data-pm="others">Others</button>
+            </div>
+        </div>
+        <div class="filter-group">
+            <span class="filter-label">TAGS</span>
+            <div class="filter-pills" id="tag-filters">
+                <button class="pill active" data-tag-all>All Tags</button>
+                <button class="pill pill-qr" data-qr-filter>
+                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                        <use href="#icon-qr"></use>
+                    </svg>
+                    Has QR Code
+                </button>
+                {
+                    tags.map((tag) => (
+                        <button class="pill" data-tag={tag}>
+                            {tag}
+                        </button>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
