@@ -1,14 +1,12 @@
 ---
 import makeupTutorialsJson from "../data/makeup_tutorials.json";
 import TutorialCard from "./TutorialCard.astro";
-import { formatDate } from "../utils/helper";
 
 const thumbnailList = Object.values(makeupTutorialsJson.tutorials).map(
     (tutorial) => {
         return {
             src: `/images/tutorials/${tutorial.id}.webp`,
             alt: tutorial.title,
-            dateFormattedString: formatDate(tutorial.date),
             ...tutorial,
         };
     },
@@ -28,7 +26,6 @@ const thumbnailList = Object.values(makeupTutorialsJson.tutorials).map(
                     <TutorialCard
                         thumbnailPath={tutorial.src}
                         title={tutorial.title}
-                        date={tutorial.dateFormattedString}
                         postUrl={tutorial.postUrl}
                     />
                 ))

@@ -3,14 +3,13 @@ interface Props {
     index: number;
     name: string;
     alt: string | undefined;
-    date: string;
     characterList: string[];
     tags: string[];
     qrPostUrl: string | null;
     mainPostUrl: string | undefined;
 }
 
-const { index, name, alt, date, characterList, tags, qrPostUrl, mainPostUrl } =
+const { index, name, alt, characterList, tags, qrPostUrl, mainPostUrl } =
     Astro.props;
 ---
 
@@ -22,7 +21,7 @@ const { index, name, alt, date, characterList, tags, qrPostUrl, mainPostUrl } =
     data-tags={tags.join(",")}
     data-has-qr={qrPostUrl !== null}
 >
-    <a href={`${mainPostUrl}`} target="_blank">
+    <a href={`${qrPostUrl ?? mainPostUrl}`} target="_blank">
         <img
             src={`/images/photos/${name}.webp`}
             alt={alt ?? ""}
@@ -33,17 +32,19 @@ const { index, name, alt, date, characterList, tags, qrPostUrl, mainPostUrl } =
         />
         {
             qrPostUrl && (
-                <a href={qrPostUrl} target="_blank" class="qr-badge">
+                <div class="qr-badge">
                     <svg fill="currentColor">
                         <use href="#icon-qr" />
                     </svg>
                     <span>QR</span>
-                </a>
+                </div>
             )
         }
         <div class="card-body">
             <p class="card-title">{name}</p>
-            <p class="card-date">{date}</p>
+            <p class="card-instruction">
+                {qrPostUrl ? "Click to Get QR on X" : "Click to View on X"}
+            </p>
         </div>
     </a>
 </div>

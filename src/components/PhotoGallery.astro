@@ -2,14 +2,12 @@
 import photoGalleryJson from "../data/photo_gallery.json";
 import PhotoGalleryFilter from "./PhotoGalleryFilter.astro";
 import PhotoCard from "./PhotoCard.astro";
-import { formatDate } from "../utils/helper";
 
 const thumbnailList = Object.values(photoGalleryJson.images).map(
     (image, index) => {
         return {
             index: index,
             src: `/images/photos/${image.name}.webp`,
-            dateFormattedString: formatDate(image.date),
             ...image,
         };
     },
@@ -49,7 +47,6 @@ const tags = [...new Set(thumbnailList.flatMap((image) => image.tags))].sort(
                                 ? (thumbnail.name ?? "")
                                 : thumbnail.alt
                         }
-                        date={thumbnail.dateFormattedString}
                         characterList={thumbnail.characters}
                         tags={thumbnail.tags}
                         qrPostUrl={thumbnail.qrPostUrl}

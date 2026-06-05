@@ -2,11 +2,10 @@
 interface Props {
     thumbnailPath: string;
     title: string;
-    date: string;
     postUrl: string;
 }
 
-const { thumbnailPath, title, date, postUrl } = Astro.props;
+const { thumbnailPath, title, postUrl } = Astro.props;
 ---
 
 <div class="tutorial-card">
@@ -21,7 +20,7 @@ const { thumbnailPath, title, date, postUrl } = Astro.props;
         />
         <div class="card-body">
             <p class="card-title">{title}</p>
-            <p class="card-date">{date}</p>
+            <p class="card-instruction">Click to View on X</p>
         </div>
     </a>
 </div>
