@@ -65,7 +65,7 @@ body {
 
 /* ── HEADER ── */
 .navbar {
-    height: 50px;
+    height: 70px;
     position: fixed;
     margin: 0;
     top: 0;
@@ -89,17 +89,27 @@ body {
 .nav-theme-toggle {
     list-style: none;
     display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
+.navbar .nav-links li {
+    display: flex;
+    height: 100%;
+}
 
 .navbar .nav-links li a {
+    display: flex;
+    align-items: center;
+    height: 100%;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.2em;
     color: var(--navbar-link-color);
     transition: color 0.3s ease;
-    padding: 1rem 2rem;
+    margin: 0 2rem;
 }
 
 .navbar .nav-links li a:hover,
@@ -109,16 +119,24 @@ body {
     color: var(--navbar-link-color-hover);
 }
 
-.navbar .nav-links li a.active,
-#navigation-mobile-menu .nav-links li a.active {
+.navbar .nav-links li a.active {
     color: var(--navbar-link-color-active);
+    border-bottom: 4px solid var(--navbar-link-color-active);
+}
+
+#navigation-mobile-menu .nav-links li a.active {
+    color: var(--mobile-navbar-link-color-active);
     background-color: var(--navbar-link-bg-color-active);
 }
 
-.navbar .nav-links li a.active:hover,
+.navbar .nav-links li a.active:hover {
+    color: var(--navbar-link-color-active);
+}
+
 #navigation-mobile-menu .nav-links li a.active:hover {
     color: var(--navbar-link-color-active);
     background-color: var(--navbar-link-bg-color-active-hover);
+
 }
 
 .nav-theme-toggle a {
@@ -133,7 +151,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-decoration: none;
     color: var(--navbar-link-color);
     letter-spacing: 0.1em;
@@ -164,8 +182,8 @@ body {
 
 .nav-theme-toggle .icon,
 #navigation-menu-btn .icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 
 #navigation-menu-btn {
@@ -232,8 +250,15 @@ body {
     flex-grow: 1;
 }
 
+#navigation-mobile-menu .nav-links li {
+    display: flex;
+    width: 100%;
+}
+
 #navigation-mobile-menu .nav-links li a {
     display: flex;
+    width: 100%;
+    justify-content: center;
     text-decoration: none;
     font-weight: 500;
     color: var(--navbar-link-color);
@@ -277,19 +302,17 @@ body {
     flex-direction: column;
     z-index: 1;
     text-align: center;
-    margin: 160px calc((100% - var(--max-width-page))/2) 60px;
+    margin: 160px calc((100% - var(--max-width-page))/2) 6rem;
 }
 
 .hero .hero-eyebrow {
     font-size: clamp(0.7rem, 1.6vw + -.1rem, 0.8rem);
-    /*font-size: 0.8rem;*/
     font-weight: 500;
     letter-spacing: 0.4em;
     color: var(--hero-eyebrow-text-color);
     margin-bottom: 0.4rem;
-    /*
     opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;*/
+    animation: fadeUp 0.8s 0.2s forwards;
 }
 
 .hero .hero-title {
@@ -299,8 +322,8 @@ body {
     line-height: 1;
     letter-spacing: -0.01em;
     color: var(--hero-heading-color);
-    /*opacity: 0;
-    animation: fadeUp 0.8s 0.35s forwards;*/
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
 }
 
 .hero h1 em {
@@ -309,13 +332,25 @@ body {
 }
 
 .hero-sub {
+    /* text-align: justify; */
     font-size: 1.1rem;
-    font-weight: 300;
     letter-spacing: 0.1rem;
     color: var(--hero-text-color);
-    margin-top: 2rem;
-    /*opacity: 0;
-    animation: fadeUp 0.8s 0.5s forwards;*/
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ── LIGHTBOX ── */
@@ -683,16 +718,11 @@ footer {
     }
 
     .navbar .nav-links li a {
-        padding: 1rem;
+        margin: 0 1rem;
     }
 
     .nav-theme-toggle a {
         margin-left: 1rem;
-    }
-
-    .hero {
-        margin-top: 160px;
-        margin-bottom: 80px;
     }
 
     .hero,
@@ -711,7 +741,10 @@ footer {
         font-size: 1rem;
     }
 
-    #makeup-tutorials-container .tutorial-card,
+    #makeup-tutorials-container .tutorial-card {
+        margin: 0 auto 16px;
+    }
+
     #photo-gallery-container .photo-card {
         margin: 0 auto 10px;
     }
@@ -734,7 +767,7 @@ footer {
 
     .hero {
         margin-top: 120px;
-        margin-bottom: 40px;
+        margin-bottom: 60px;
     }
 
     #makeup-tutorials-container .tutorial-card .card-body {
