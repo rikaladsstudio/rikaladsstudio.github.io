@@ -2,6 +2,7 @@
 import photoGalleryJson from "../data/photo_gallery.json";
 import PhotoGalleryFilter from "./PhotoGalleryFilter.astro";
 import PhotoCard from "./PhotoCard.astro";
+import PhotoGalleryToolbar from "./PhotoGalleryToolbar.astro";
 
 const thumbnailList = Object.values(photoGalleryJson.images).map(
     (image, index) => {
@@ -30,33 +31,8 @@ const tags = [...new Set(thumbnailList.flatMap((image) => image.tags))].sort(
 ---
 
 <div id="photo-gallery-container">
-    <section id="photo-gallery-toolbar">
-        <div class="toolbar-left">
-            <button
-                id="show-filters-btn"
-                aria-expanded="false"
-                aria-controls="filter-section"
-            >
-                <svg class="icon" aria-hidden="true" fill="currentColor">
-                    <use href="#icon-show-filters"></use>
-                </svg>
-                Show Filters
-            </button>
-            <button
-                id="hide-filters-btn"
-                aria-expanded="false"
-                aria-controls="filter-section"
-            >
-                <svg class="icon" aria-hidden="true" fill="currentColor">
-                    <use href="#icon-hide-filters"></use>
-                </svg>
-                Hide Filters
-            </button>
-        </div>
-        <div id="total-photo-count" class="total">CALCULATING...</div>
-    </section>
+    <PhotoGalleryToolbar />
     <PhotoGalleryFilter characters={characters} tags={tags} />
-    <!-- PHOTO GALLERY SECTION -->
     <section id="photo-gallery-section">
         <div class="grid">
             {
