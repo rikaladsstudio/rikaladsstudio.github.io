@@ -20,8 +20,6 @@
     --body-bg-color: #040A12;
     --body-text-color: var(--white);
 
-    --divider-icon-color: rgba(242, 242, 242, 0.4);
-
     --navbar-bg-color: rgba(0, 0, 0, 0.5);
     --navbar-border-color: rgba(242, 242, 242, 0.1);
     --navbar-link-color: var(--white);
@@ -66,8 +64,6 @@
     --body-bg-image: url(/images/bg-light-theme.webp);
     --body-bg-color: #E3E1DD;
     --body-text-color: var(--grey-3);
-
-    --divider-icon-color: rgba(26, 20, 14, 0.2);
 
     --navbar-bg-color: rgba(242, 242, 242, 0.8);
     --navbar-border-color: var(--white);
