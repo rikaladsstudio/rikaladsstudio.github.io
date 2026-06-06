@@ -840,6 +840,7 @@ footer {
         background-color: var(--mobile-navbar-toggle-btn-bg-color);
         font-weight: 500;
         text-transform: uppercase;
+        margin-top: 2rem;
     }
 }
 

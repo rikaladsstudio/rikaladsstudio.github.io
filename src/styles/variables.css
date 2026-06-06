@@ -22,7 +22,7 @@
     --body-text-color: var(--white);
 
     --navbar-bg-color: rgba(0, 0, 0, 0.5);
-    --navbar-border-color: rgba(242, 242, 242, 0.3);
+    --navbar-border-color: rgba(242, 242, 242, 0.1);
     --navbar-link-color: var(--white);
     --navbar-link-color-hover: #C4C1D2;
     --navbar-link-underline-color-active: rgba(245, 242, 237, 0.5);
