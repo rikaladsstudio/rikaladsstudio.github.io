@@ -3,8 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://rika3000.github.io",
-    base: "/rika-lads-studio",
+    site: "https://rikaladsstudio.github.io",
     devToolbar: {
         enabled: false,
     },
