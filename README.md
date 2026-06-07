@@ -1,32 +1,56 @@
-# Astro Starter Kit: Basics
+# Rika Lads Studio
 
-```sh
-npm create astro@latest -- --template basics
-```
+## 🗒️ Overview
+This is a personal website for Rika LADS Studio showcasing makeup tutorials and photo albums created on a mobile game called Love and Deepspace. 
+All the tutorials and photos will be redirected to X Posts.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🗂️ Project Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+Inside the Astro project directory, you'll see the following directories and files:
 
 ```text
-/
+
 ├── public/
+│   └── favicon.ico
 │   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+│   └── images/
+├── src/
+│   └── components/
+│   |   └── Footer.astro
+│   |   └── Header.astro
+│   |   └── Navigation.astro
+│   |   └── NavigationMenu.astro
+│   |   └── NavigationMobileMenu.astro
+│   |   └── PhotoCard.astro
+│   |   └── PhotoGallery.astro
+│   |   └── PhotoGalleryFilter.astro
+│   |   └── PhotoGalleryToolbar.astro
+│   |   └── SocialHandle.astro
+│   |   └── SvgSprite.astro
+│   |   └── ThemeToggleBtn.astro
+│   |   └── TutorialCard.astro
+│   |   └── TutorialList.astro
+│   └── data/
+│   |   └── makeup_tutorials.json
+│   |   └── photo_gallery.json
+│   |   └── photo_gallery_test.json
+│   └── layouts/
+│   |   └── BaseLayout.astro
+│   └── lib/
+│   |   └── constants.ts
+│   |   └── lightbox.ts
+│   └── pages/
+│   |   └── about.astro
+│   |   └── makeuptutorials.astro
+│   |   └── photoalbum.astro
+│   └── scripts/
+│   |   └── gallery.ts
+│   |   └── menu.ts
+│   `-- styles/
+│   |   └── global.css
+│   |   └── variables.css
 └── package.json
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
@@ -40,7 +64,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
