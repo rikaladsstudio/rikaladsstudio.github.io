@@ -8,6 +8,6 @@ export default defineConfig({
         enabled: false,
     },
     redirects: {
-        "/": "/about"
+        "/": "/photoalbum"
     },
 });
