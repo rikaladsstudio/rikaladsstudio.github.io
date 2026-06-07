@@ -33,20 +33,22 @@ export class Lightbox {
         if (!this.lightbox) {
             return;
         }
-        this.lightbox.addEventListener('click', () => {
-            const isFilterMenuExpanded = showFiltersBtn?.getAttribute('aria-expanded') === 'true' && hideFiltersBtn?.getAttribute('aria-expanded') === 'true';
-            const isNavigationMenuExpanded = navigationMenuBtn?.getAttribute('aria-expanded') === 'true' && navigationCloseBtn?.getAttribute('aria-expanded') === 'true';
+        this.lightbox.addEventListener('click', this.clickHandler.bind(this, { showFiltersBtn, hideFiltersBtn, navigationMenuBtn, navigationCloseBtn }));
+    }
 
-            if (isFilterMenuExpanded) {
-                showFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
-                hideFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
-                this.close();
-            }
-            if (isNavigationMenuExpanded) {
-                navigationMenuBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
-                navigationCloseBtn.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
-                this.close();
-            }
-        });
+    protected clickHandler({ showFiltersBtn, hideFiltersBtn, navigationMenuBtn, navigationCloseBtn }: LightboxEventListenerParams, event: PointerEvent) {
+        const isFilterMenuExpanded = showFiltersBtn?.getAttribute('aria-expanded') === 'true' && hideFiltersBtn?.getAttribute('aria-expanded') === 'true';
+        const isNavigationMenuExpanded = navigationMenuBtn?.getAttribute('aria-expanded') === 'true' && navigationCloseBtn?.getAttribute('aria-expanded') === 'true';
+
+        if (isFilterMenuExpanded) {
+            showFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
+            hideFiltersBtn?.setAttribute('aria-expanded', `${!isFilterMenuExpanded}`);
+            this.close();
+        }
+        if (isNavigationMenuExpanded) {
+            navigationMenuBtn?.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
+            navigationCloseBtn?.setAttribute('aria-expanded', `${!isNavigationMenuExpanded}`);
+            this.close();
+        }
     }
 }

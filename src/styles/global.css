@@ -430,6 +430,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
 }
 
 #makeup-tutorials-container .card-instruction {
