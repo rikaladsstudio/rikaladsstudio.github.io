@@ -21,11 +21,17 @@ const { index, name, alt, characterList, tags, qrPostUrl, mainPostUrl } =
     data-tags={tags.join(",")}
     data-has-qr={qrPostUrl !== null}
 >
-    <a href={`${qrPostUrl ?? mainPostUrl}`} target="_blank">
+    <a
+        href={`${qrPostUrl ?? mainPostUrl}`}
+        target="_blank"
+        aria-label={qrPostUrl
+            ? `Get QR Code for Photo ${name} on X`
+            : `View Photo ${name} on X`}
+    >
         <img
             src={`/images/photos/${name}.webp`}
             alt={alt ?? ""}
-            onerror="this.onerror=null; this.src='https://placehold.co/800x1140'"
+            onerror="this.onerror=null; this.src='/images/placeholder_800x1140.webp'"
             loading="lazy"
             width="800px"
             height="1140px"

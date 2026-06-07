@@ -12,6 +12,7 @@ const { activePage } = Astro.props;
     <li>
         <a
             href="/photoalbum/"
+            aria-label="Go to photo album page"
             class={activePage === PHOTO_ALBUM_TITLE ? "active" : ""}
             >PHOTO ALBUM</a
         >
@@ -19,12 +20,16 @@ const { activePage } = Astro.props;
     <li>
         <a
             href="/makeuptutorials/"
+            aria-label="Go to makeup tutorials page"
             class={activePage === MAKEUP_TUTORIALS_TITLE ? "active" : ""}
             >MAKEUP TUTORIALS</a
         >
     </li>
     <li>
-        <a href="/about/" class={activePage === ABOUT_TITLE ? "active" : ""}
+        <a
+            href="/about/"
+            aria-label="Go to about page"
+            class={activePage === ABOUT_TITLE ? "active" : ""}
             >ABOUT</a
         >
     </li>

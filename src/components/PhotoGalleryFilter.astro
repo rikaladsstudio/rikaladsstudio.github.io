@@ -17,12 +17,18 @@ const { characters, tags } = Astro.props;
         <div class="filter-group">
             <span class="filter-label">CHARACTERS</span>
             <div class="filter-pills" id="character-filters">
-                <button class="pill active" data-character-all
-                    >All Characters</button
+                <button
+                    class="pill active"
+                    aria-label="All Characters filter"
+                    data-character-all>All Characters</button
                 >
                 {
                     characters.map((character) => (
-                        <button class="pill" data-character={character}>
+                        <button
+                            class="pill"
+                            data-character={character}
+                            aria-label={`${character} filter`}
+                        >
                             {character}
                         </button>
                     ))
@@ -32,17 +38,39 @@ const { characters, tags } = Astro.props;
         <div class="filter-group">
             <span class="filter-label">PHOTO MODES</span>
             <div class="filter-pills" id="photo-mode-filters">
-                <button class="pill active" data-pm-all>All Modes</button>
-                <button class="pill" data-pm="solo">Solo</button>
-                <button class="pill" data-pm="duo">Duo</button>
-                <button class="pill" data-pm="others">Others</button>
+                <button
+                    class="pill active"
+                    aria-label="All Modes filter"
+                    data-pm-all>All Modes</button
+                >
+                <button
+                    class="pill"
+                    aria-label="Solo mode filter"
+                    data-pm="solo">Solo</button
+                >
+                <button class="pill" aria-label="Duo mode filter" data-pm="duo"
+                    >Duo</button
+                >
+                <button
+                    class="pill"
+                    aria-label="Others mode filter"
+                    data-pm="others">Others</button
+                >
             </div>
         </div>
         <div class="filter-group">
             <span class="filter-label">TAGS</span>
             <div class="filter-pills" id="tag-filters">
-                <button class="pill active" data-tag-all>All Tags</button>
-                <button class="pill pill-qr" data-qr-filter>
+                <button
+                    class="pill active"
+                    aria-label="All Tags filter"
+                    data-tag-all>All Tags</button
+                >
+                <button
+                    class="pill pill-qr"
+                    aria-label="Has QR Code filter"
+                    data-qr-filter
+                >
                     <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
                         <use href="#icon-qr"></use>
                     </svg>
@@ -50,7 +78,7 @@ const { characters, tags } = Astro.props;
                 </button>
                 {
                     tags.map((tag) => (
-                        <button class="pill" data-tag={tag}>
+                        <button class="pill" data-tag={tag} aria-label={`${tag} filter`}>
                             {tag}
                         </button>
                     ))
