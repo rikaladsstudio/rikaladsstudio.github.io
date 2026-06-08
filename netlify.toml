@@ -1,9 +1,0 @@
-[build]
-  command = "npm run build"
-  publish = "dist"
- [[headers]]
- # Define the path pattern (supports wildcards *)
-  for = "/*"
-  [headers.values]
-    # Remove 'interest-cohort' from this list
-    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"

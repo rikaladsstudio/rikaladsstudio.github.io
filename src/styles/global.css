@@ -384,7 +384,18 @@ body {
 
 .tutorial-card:has(a:focus-visible),
 .photo-card:has(a:focus-visible) {
-    outline: 2px solid var(--white);
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+#filter-clear-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+#filter-close-btn:focus-visible, #mobile-light-mode-btn:focus-visible, #mobile-dark-mode-btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
 }
 
 #makeup-tutorials-container .tutorial-card a {
