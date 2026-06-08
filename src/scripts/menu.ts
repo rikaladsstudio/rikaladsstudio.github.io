@@ -38,11 +38,13 @@ function initVariables() {
 
 /**
  * Loads the light or dark theme from saved theme in localStorage
- * If unavailable, defaults to light theme
+ * If unavailable, falls back to system preference (dark mode)
+ * Otherwise, defaults to light theme
  * @param elements 
  */
 function initializeTheme(elements: MenuElements) {
-    const saved = localStorage.getItem('theme') || LIGHT_THEME;
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const saved = localStorage.getItem('theme') ?? (darkModeQuery.matches ? DARK_THEME : LIGHT_THEME);
     document.documentElement.setAttribute('data-theme', saved);
     elements.lightModeIcon.style.display = saved === DARK_THEME ? 'block' : 'none';
     elements.darkModeIcon.style.display = saved === DARK_THEME ? 'none' : 'block';

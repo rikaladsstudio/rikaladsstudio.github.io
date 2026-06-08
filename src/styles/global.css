@@ -245,6 +245,10 @@ body {
     border-bottom: 3px solid transparent;
 }
 
+#navigation-mobile-menu #theme-toggle-btn {
+    display: none;
+}
+
 .mobile-dark-light-toggle-btn {
     display: flex;
     justify-content: center;
@@ -380,22 +384,6 @@ body {
     overflow: hidden;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     border-radius: 6px 6px 0 0;
-}
-
-.tutorial-card:has(a:focus-visible),
-.photo-card:has(a:focus-visible) {
-    outline: 3px solid var(--accent);
-    outline-offset: 4px;
-}
-
-#filter-clear-btn:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 4px;
-}
-
-#filter-close-btn:focus-visible, #mobile-light-mode-btn:focus-visible, #mobile-dark-mode-btn:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: -3px;
 }
 
 #makeup-tutorials-container .tutorial-card a {
@@ -734,6 +722,38 @@ footer {
     text-decoration: none;
 }
 
+/* ── ACCESSIBILITY: FOCUS RINGS ── */
+
+.tutorial-card:has(a:focus-visible),
+.photo-card:has(a:focus-visible),
+.nav-x:focus-visible,
+#navigation-menu-btn:focus-visible,
+#navigation-mobile-menu .nav-links a:focus-visible,
+#show-filters-btn:focus-visible,
+#hide-filters-btn:focus-visible,
+#filter-clear-btn:focus-visible,
+.filter-pills .pill:focus-visible,
+footer a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.navbar .nav-links a:focus-visible,
+.navbar .nav-links button:focus-visible,
+#navigation-close-btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: -3px;
+}
+
+#filter-close-btn:focus-visible,
+#mobile-light-mode-btn:focus-visible,
+#mobile-dark-mode-btn:focus-visible {
+    outline: 5px solid var(--accent);
+    outline-offset: -5px;
+}
+
+/* ── MEDIA QUERIES FOR DEVICES BASED ON WIDTH ── */
+/* for desktop filter section */
 @media (min-width: 1301px) {
     :has(#show-filters-btn[aria-expanded="true"]) #filter-section {
         display: flex;
@@ -799,6 +819,7 @@ footer {
         left: 0.5rem;
     }
 
+    /* for mobile filter section */
     .filter-group {
         margin-top: 1.7rem;
     }
@@ -859,7 +880,6 @@ footer {
         margin-top: 2rem;
     }
 }
-
 
 @media (max-width:900px) {
     .hero {
@@ -941,8 +961,6 @@ footer {
     }
 }
 
-/* @media (max-width:600px) {} */
-
 @media (max-width: 480px) {
     .nav-x>svg {
         width: 20px;
@@ -1022,5 +1040,15 @@ footer {
 }
 
 
-/* 
-@media (max-width: 380px) {} */
+/* ── MEDIA QUERIES FOR ACCESSIBILITY ── */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: initial !important;
+        scroll-behavior: auto !important;
+        transition-delay: -1ms !important;
+        transition-duration: 1ms !important;
+    }
+}
