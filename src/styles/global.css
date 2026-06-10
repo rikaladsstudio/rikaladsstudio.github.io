@@ -165,7 +165,8 @@ body {
 
 #theme-toggle-btn .icon,
 #navigation-menu-btn .icon,
-#navigation-close-btn .icon {
+#navigation-close-btn .icon,
+#top-filter-close-btn .icon {
     width: 28px;
     height: 28px;
 }
@@ -214,7 +215,6 @@ body {
 #navigation-close-btn {
     display: flex;
     align-items: center;
-    cursor: pointer;
     padding: 1.2rem;
 }
 
@@ -283,7 +283,7 @@ body {
 }
 
 .hero .hero-eyebrow {
-    font-size: clamp(0.7rem, 1.6vw + -.1rem, 0.8rem);
+    font-size: clamp(0.7rem, 1.6dvw, 0.8rem);
     font-weight: 500;
     letter-spacing: 0.4em;
     color: var(--hero-eyebrow-text-color);
@@ -294,7 +294,7 @@ body {
 
 .hero .hero-title {
     font-family: var(--serif);
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-size: clamp(3rem, 6dvw, 5.5rem);
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.01em;
@@ -600,7 +600,7 @@ body {
     line-height: 1;
 }
 
-#filter-clear-btn {
+#top-filter-clear-btn {
     background-color: transparent;
     border: 2px solid var(--filter-text-color);
     font-size: 0.9rem;
@@ -611,8 +611,12 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#filter-clear-btn:hover {
+#top-filter-clear-btn:hover {
     background-color: var(--filter-reset-btn-bg-color-hover);
+}
+
+#top-filter-close-btn {
+    display: none;
 }
 
 .filter-group {
@@ -731,7 +735,7 @@ footer {
 #navigation-mobile-menu .nav-links a:focus-visible,
 #show-filters-btn:focus-visible,
 #hide-filters-btn:focus-visible,
-#filter-clear-btn:focus-visible,
+#top-filter-clear-btn:focus-visible,
 .filter-pills .pill:focus-visible,
 footer a:focus-visible {
     outline: 3px solid var(--accent);
@@ -740,12 +744,14 @@ footer a:focus-visible {
 
 .navbar .nav-links a:focus-visible,
 .navbar .nav-links button:focus-visible,
-#navigation-close-btn:focus-visible {
+#navigation-close-btn:focus-visible,
+#top-filter-close-btn:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: -3px;
 }
 
-#filter-close-btn:focus-visible,
+#bottom-filter-clear-btn:focus-visible,
+#bottom-filter-close-btn:focus-visible,
 #mobile-light-mode-btn:focus-visible,
 #mobile-dark-mode-btn:focus-visible {
     outline: 5px solid var(--accent);
@@ -857,8 +863,9 @@ footer a:focus-visible {
         overflow-y: auto;
     }
 
-    .filter-header {
-        padding: 20px;
+    .filter-header h2,
+    .filter-header #top-filter-close-btn {
+        padding: 1.2rem;
     }
 
     .filter-content {
@@ -867,11 +874,47 @@ footer a:focus-visible {
 
     }
 
-    #filter-close-btn {
+    #top-filter-clear-btn {
+        display: none;
+        align-items: center;
+        padding: 1.2rem;
+    }
+
+    #top-filter-close-btn {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
+    }
+
+    #top-filter-close-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .filter-footer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #bottom-filter-clear-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 3rem;
+        color: var(--mobile-navbar-toggle-btn-bg-color);
+        background-color: var(--mobile-filter-clear-btn-bg-color);
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-top: 2rem;
+    }
+
+    #bottom-filter-close-btn {
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         padding: 2rem 3rem;
         color: var(--body-bg-color);
         background-color: var(--mobile-navbar-toggle-btn-bg-color);
@@ -923,7 +966,7 @@ footer a:focus-visible {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    #filter-clear-btn,
+    #top-filter-clear-btn,
     #show-filters-btn,
     #hide-filters-btn {
         font-size: 0.8rem;
@@ -1022,10 +1065,132 @@ footer a:focus-visible {
     #photo-gallery-container .card-instruction {
         font-size: 0.7rem;
     }
+
+    #filter-section {
+        width: 100dvw;
+    }
+
+    .filter-content .filter-group:first-child {
+        margin-top: 0;
+    }
+
+    .filter-footer {
+        margin-top: 1rem;
+        flex-direction: column;
+    }
+
+    #bottom-filter-clear-btn,
+    #bottom-filter-close-btn {
+        margin-top: 0;
+        padding: 1rem;
+    }
 }
 
-@media (max-height: 400px) {
+/** handle smartphone with browser's zoom feature up to 300% */
+@media (max-width: 370px) {
 
+    #photo-gallery-toolbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #show-filters-btn,
+    #hide-filters-btn,
+    .total,
+    #top-filter-clear-btn,
+    .pill,
+    footer {
+        text-align: center;
+    }
+
+    #show-filters-btn,
+    #hide-filters-btn {
+        font-size: 1rem;
+        padding: 16px 26px;
+    }
+
+    #makeup-tutorials-container .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #makeup-tutorials-container .card-title {
+        font-size: 1.2rem;
+    }
+
+    #makeup-tutorials-container .card-instruction {
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 300px) {
+    #navigation-mobile-menu {
+        width: 100dvw;
+        font-size: clamp(1rem, 100dvw, 1.1rem);
+        max-height: 100dvh;
+        overflow-y: auto;
+    }
+
+    #navigation-mobile-menu .nav-links li a {
+        margin: 1rem 1rem 0;
+    }
+
+    #navigation-close-btn {
+        padding: 0.5rem 1rem;
+    }
+
+    .mobile-dark-light-toggle-btn {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+
+    .mobile-dark-light-toggle-btn .icon,
+    #show-filters-btn svg,
+    #hide-filters-btn svg,
+    .pill svg {
+        display: none;
+    }
+
+    .mobile-dark-light-toggle-btn span {
+        margin: 0;
+    }
+
+    .hero,
+    #makeup-tutorials-container,
+    #photo-gallery-container {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    #photo-gallery-container .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .filter-header {
+        flex-direction: column-reverse;
+    }
+
+    .filter-header h2,
+    .filter-header #top-filter-close-btn,
+    .filter-content {
+        padding: 0.5rem 1rem;
+    }
+
+    .filter-header h2 {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 180px) {
+    .filter-pills {
+        flex-direction: column;
+    }
+}
+
+/** for landscape mode on smartphone */
+@media (max-height: 400px) {
     #navigation-mobile-menu .nav-links li a {
         margin: 1.2rem 2rem 0;
     }
@@ -1038,7 +1203,6 @@ footer a:focus-visible {
         padding: 0.5rem 3rem;
     }
 }
-
 
 /* ── MEDIA QUERIES FOR ACCESSIBILITY ── */
 @media (prefers-reduced-motion: reduce) {

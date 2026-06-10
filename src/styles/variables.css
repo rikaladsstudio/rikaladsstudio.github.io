@@ -56,6 +56,8 @@
     --filter-tag-text-color-active: var(--black);
     --filter-tag-border-color-active: var(--white);
 
+    --mobile-filter-clear-btn-bg-color: rgba(242, 242, 242, 0.3);
+
     --empty-state-text-color: rgba(242, 242, 242, 0.4);
 
     --footer-text-color: rgba(197, 194, 211, 0.7);
@@ -100,6 +102,8 @@
     --filter-tag-bg-color-active: rgba(242, 242, 242, 0.7);
     --filter-tag-text-color-active: var(--grey-3);
     --filter-tag-border-color-active: var(--grey-3);
+
+    --mobile-filter-clear-btn-bg-color: rgba(78, 71, 73, 0.2);
 
     --empty-state-text-color: rgba(78, 71, 73, 0.4);
 

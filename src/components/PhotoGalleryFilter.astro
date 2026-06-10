@@ -9,8 +9,18 @@ const { characters, tags } = Astro.props;
 <section id="filter-section">
     <div class="filter-header">
         <h2>Filter</h2>
-        <button id="filter-clear-btn" aria-label="clear filter">
+        <button id="top-filter-clear-btn" aria-label="Clear filter">
             <span>RESET ALL</span>
+        </button>
+        <button
+            aria-expanded="true"
+            aria-controls="filter-section"
+            aria-label="Close filter"
+            id="top-filter-close-btn"
+        >
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                <use href="#icon-close"></use>
+            </svg>
         </button>
     </div>
     <div class="filter-content">
@@ -78,7 +88,11 @@ const { characters, tags } = Astro.props;
                 </button>
                 {
                     tags.map((tag) => (
-                        <button class="pill" data-tag={tag} aria-label={`${tag} filter`}>
+                        <button
+                            class="pill"
+                            data-tag={tag}
+                            aria-label={`${tag} filter`}
+                        >
                             {tag}
                         </button>
                     ))
@@ -87,7 +101,10 @@ const { characters, tags } = Astro.props;
         </div>
     </div>
     <div class="filter-footer">
-        <button id="filter-close-btn" aria-label="close filter">
+        <button id="bottom-filter-clear-btn" aria-label="Clear filter">
+            <span>RESET ALL</span>
+        </button>
+        <button id="bottom-filter-close-btn" aria-label="Close Filter">
             <span>CALCULATING PHOTOS...</span>
         </button>
     </div>

@@ -5,10 +5,12 @@ interface GalleryElements {
     allPhotos: NodeListOf<HTMLDivElement>;
     totalPhotoCountTxt: HTMLElement | null;
     emptyState: HTMLElement | null;
-    filterClearBtn: HTMLButtonElement | null;
+    topFilterClearBtn: HTMLButtonElement | null;
+    bottomFilterClearBtn: HTMLButtonElement | null;
     showFiltersBtn: HTMLButtonElement | null;
     hideFiltersBtn: HTMLButtonElement | null;
-    closeFilterBtn: HTMLButtonElement | null;
+    topCloseFilterBtn: HTMLButtonElement | null;
+    bottomCloseFilterBtn: HTMLButtonElement | null;
     filterSection: HTMLElement | null;
     characterFilterBtns: NodeListOf<HTMLButtonElement>;
     photoModeFilterBtns: NodeListOf<HTMLButtonElement>;
@@ -41,10 +43,12 @@ function initVariables() {
         allPhotos: document.querySelectorAll(".photo-card"),
         totalPhotoCountTxt: document.getElementById("total-photo-count"),
         emptyState: document.getElementById("gallery-empty-state"),
-        filterClearBtn: document.getElementById("filter-clear-btn") as HTMLButtonElement | null,
+        topFilterClearBtn: document.getElementById("top-filter-clear-btn") as HTMLButtonElement | null,
+        bottomFilterClearBtn: document.getElementById("bottom-filter-clear-btn") as HTMLButtonElement | null,
         showFiltersBtn: document.getElementById("show-filters-btn") as HTMLButtonElement | null,
         hideFiltersBtn: document.getElementById("hide-filters-btn") as HTMLButtonElement | null,
-        closeFilterBtn: document.getElementById("filter-close-btn") as HTMLButtonElement | null,
+        topCloseFilterBtn: document.getElementById("top-filter-close-btn") as HTMLButtonElement | null,
+        bottomCloseFilterBtn: document.getElementById("bottom-filter-close-btn") as HTMLButtonElement | null,
         filterSection: document.getElementById("filter-section") as HTMLElement | null,
         characterFilterBtns: document.querySelectorAll("#character-filters button.pill:not([data-character-all])") as NodeListOf<HTMLButtonElement>,
         photoModeFilterBtns: document.querySelectorAll("#photo-mode-filters button.pill:not([data-pm-all])") as NodeListOf<HTMLButtonElement>,
@@ -77,6 +81,8 @@ function toggleFilterSection(elements: GalleryElements) {
 
     elements.showFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
     elements.hideFiltersBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
+    elements.topCloseFilterBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
+    elements.bottomCloseFilterBtn?.setAttribute('aria-expanded', `${!isExpanded}`);
 
     if (!isExpanded && window.innerWidth < 1300) {
         lightbox.open();
@@ -143,6 +149,17 @@ function renderFilters(state: GalleryState, elements: GalleryElements) {
         const tagName: string = btn.getAttribute("data-tag") || "";
         btn.classList.toggle("active", state.activeTags.has(tagName));
     });
+
+    //display bottomFilterBtn only when filters are changed
+    const willDisplayBottomFilterBtn = state.activeCharacters.size > 0 ||
+        state.activePhotoMode !== PHOTO_MODE_ALL ||
+        state.activeTags.size > 0 ||
+        state.activeHasQR;
+
+    if (elements.bottomFilterClearBtn) {
+        elements.bottomFilterClearBtn.style.display = willDisplayBottomFilterBtn ? "flex" : "none";
+        elements.bottomFilterClearBtn.disabled = !willDisplayBottomFilterBtn;
+    }
 }
 
 /**
@@ -207,11 +224,11 @@ function renderGallery(state: GalleryState, elements: GalleryElements) {
     if (elements.totalPhotoCountTxt) {
         elements.totalPhotoCountTxt.textContent = `${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size > 1 ? "S" : ""}`;
     }
-    if (elements.closeFilterBtn) {
+    if (elements.bottomCloseFilterBtn) {
         if (state.filteredPhotoIndices.size === 0) {
-            elements.closeFilterBtn.textContent = "NO PHOTO FOUND";
+            elements.bottomCloseFilterBtn.textContent = "NO PHOTO FOUND";
         } else {
-            elements.closeFilterBtn.textContent = `SHOW ${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size > 1 ? "S" : ""}`;
+            elements.bottomCloseFilterBtn.textContent = `SHOW ${state.filteredPhotoIndices.size} PHOTO${state.filteredPhotoIndices.size > 1 ? "S" : ""}`;
         }
     }
 
@@ -246,7 +263,15 @@ function filterAndRenderGallery(state: GalleryState, elements: GalleryElements) 
     renderGallery(state, elements);
 }
 
-
+/**
+ * Resets all filters to their default state
+ * @param state The current gallery state
+ * @param elements The gallery elements
+ */
+function resetAllFilter(state: GalleryState, elements: GalleryElements) {
+    clearAllFilters(state, elements);
+    renderGallery(state, elements);
+}
 
 /**
  * Adds event listeners to the filter buttons
@@ -256,7 +281,14 @@ function filterAndRenderGallery(state: GalleryState, elements: GalleryElements) 
 function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
     elements.showFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
     elements.hideFiltersBtn?.addEventListener('click', () => toggleFilterSection(elements));
-    elements.closeFilterBtn?.addEventListener('click', () => toggleFilterSection(elements));
+    elements.topCloseFilterBtn?.addEventListener('click', () => toggleFilterSection(elements));
+    elements.bottomCloseFilterBtn?.addEventListener('click', () => toggleFilterSection(elements));
+    elements.topFilterClearBtn?.addEventListener("click", () =>
+        resetAllFilter(state, elements)
+    );
+    elements.bottomFilterClearBtn?.addEventListener("click", () =>
+        resetAllFilter(state, elements)
+    );
 
     // All characters filter buttons
     elements.allCharactersBtn?.addEventListener("click", () => {
@@ -310,12 +342,6 @@ function addBtnEventListeners(elements: GalleryElements, state: GalleryState) {
             filterAndRenderGallery(state, elements);
         });
     });
-
-    elements.filterClearBtn?.addEventListener("click", () => {
-        clearAllFilters(state, elements);
-        renderGallery(state, elements);
-    });
-
 }
 
 document.addEventListener("DOMContentLoaded", () => {
