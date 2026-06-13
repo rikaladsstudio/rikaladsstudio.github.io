@@ -34,7 +34,6 @@ Inside the Astro project directory, you'll see the following directories and fil
 │   └── images/
 │       └── photos/
 │       └── tutorials/
-
 ├── src/
 │   └── components/
 │   |   └── Footer.astro
@@ -66,7 +65,7 @@ Inside the Astro project directory, you'll see the following directories and fil
 │   └── scripts/
 │   |   └── gallery.ts
 │   |   └── menu.ts
-│   `-- styles/
+│   └── styles/
 │   |   └── global.css
 │   |   └── variables.css
 └── package.json
