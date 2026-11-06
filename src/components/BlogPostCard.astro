@@ -1,5 +1,15 @@
 ---
-const { title, url } = Astro.props;
+const { title, url, imageUrl, category, datePublished, minutesToRead, body } =
+    Astro.props;
 ---
 
-<li><a href={url}>{title}</a></li>
+<li>
+    <a href={url}>
+        <!-- <img src={imageUrl} alt={title} /> -->
+        <h3>{title}</h3>
+        <p>{category}</p>
+        <p>{datePublished}</p>
+        <p>{minutesToRead}</p>
+        <p>{body}</p>
+    </a>
+</li>

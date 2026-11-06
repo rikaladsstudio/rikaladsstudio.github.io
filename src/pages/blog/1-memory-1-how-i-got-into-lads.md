@@ -9,6 +9,7 @@ image:
     alt: 'The Astro logo on a dark background with a pink glow.'
 categories: ["Memories"]
 tags: ["lads", "rika memories"]
+draft: true
 ---
 
 # Memory #1: How I Got Into LADS

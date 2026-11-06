@@ -1,51 +1,40 @@
 ---
 import BlogPostCard from "../components/BlogPostCard.astro";
+import { getReadingTimeInText } from "../scripts/utils/reading-time";
+
 const allBlogPosts = Object.values(
     import.meta.glob("../pages/blog/*.md", { eager: true }),
 );
-// import makeupTutorialsJson from "../data/makeup_tutorials.json";
-// import TutorialCard from "./TutorialCard.astro";
 
-// const thumbnailList = Object.values(makeupTutorialsJson.tutorials).map(
-//     (tutorial) => {
-//         return {
-//             src: `/images/tutorials/${tutorial.id}.webp`,
-//             alt: tutorial.title,
-//             ...tutorial,
-//         };
-//     },
-// );
+const nonDraftPosts = allBlogPosts.filter(
+    (post: any) => !post.frontmatter.draft,
+);
 ---
 
 <div id="blog-posts-container">
     <section id="blog-posts-toolbar">
         <div class="total">
-            {allBlogPosts.length} POST{allBlogPosts.length !== 1 ? "S" : ""}
-            <!-- {makeupTutorialsJson.tutorials.length} TUTORIAL{
-                makeupTutorialsJson.tutorials.length !== 1 ? "S" : ""
-            } -->
+            {nonDraftPosts.length} POST{nonDraftPosts.length !== 1 ? "S" : ""}
         </div>
     </section>
     <section id="blog-posts-section">
         <div class="grid">
-            <ul>
-                {
-                    allBlogPosts.map((post: any) => (
-                        <BlogPostCard
-                            title={post.frontmatter.title}
-                            url={post.url}
-                        />
-                    ))
-                }
-            </ul>
             {
-                // thumbnailList.map((tutorial) => (
-                //     <TutorialCard
-                //         thumbnailPath={tutorial.src}
-                //         title={tutorial.title}
-                //         postUrl={tutorial.postUrl}
-                //     />
-                // ))
+                nonDraftPosts.map((post: any) => (
+                    <BlogPostCard
+                        title={post.frontmatter.title}
+                        url={post.url}
+                        imageUrl={post.frontmatter.image.url}
+                        category={post.frontmatter.categories}
+                        datePublished={post.frontmatter.pubDate}
+                        minutesToRead={async () =>
+                            await getReadingTimeInText(
+                                await post.compiledContent(),
+                                "min read",
+                            )
+                        }
+                    />
+                ))
             }
         </div>
     </section>
