@@ -1,11 +1,8 @@
 ---
 import Footer from "../components/Footer.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BlogPostCard from "../components/BlogPostCard.astro";
 import { BLOG_TITLE } from "../lib/constants";
-const allPosts = Object.values(
-    import.meta.glob("./blog/*.md", { eager: true }),
-);
+import BlogPostList from "../components/BlogPostList.astro";
 ---
 
 <BaseLayout
@@ -33,12 +30,6 @@ const allPosts = Object.values(
             usually.
         </p>
     </section>
-    <ul>
-        {
-            allPosts.map((post: any) => (
-                <BlogPostCard title={post.frontmatter.title} url={post.url} />
-            ))
-        }
-    </ul>
+    <BlogPostList />
     <Footer />
 </div>

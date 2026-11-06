@@ -1,15 +1,52 @@
 ---
-const allPosts = Object.values(
-    import.meta.glob("./posts/*.md", { eager: true }),
+import BlogPostCard from "../components/BlogPostCard.astro";
+const allBlogPosts = Object.values(
+    import.meta.glob("../pages/blog/*.md", { eager: true }),
 );
+// import makeupTutorialsJson from "../data/makeup_tutorials.json";
+// import TutorialCard from "./TutorialCard.astro";
+
+// const thumbnailList = Object.values(makeupTutorialsJson.tutorials).map(
+//     (tutorial) => {
+//         return {
+//             src: `/images/tutorials/${tutorial.id}.webp`,
+//             alt: tutorial.title,
+//             ...tutorial,
+//         };
+//     },
+// );
 ---
 
-<ul>
-    {
-        allPosts.map((post: any) => (
-            <li>
-                <a href={post.url}>{post.frontmatter.title}</a>
-            </li>
-        ))
-    }
-</ul>
+<div id="blog-posts-container">
+    <section id="blog-posts-toolbar">
+        <div class="total">
+            {allBlogPosts.length} POST{allBlogPosts.length !== 1 ? "S" : ""}
+            <!-- {makeupTutorialsJson.tutorials.length} TUTORIAL{
+                makeupTutorialsJson.tutorials.length !== 1 ? "S" : ""
+            } -->
+        </div>
+    </section>
+    <section id="blog-posts-section">
+        <div class="grid">
+            <ul>
+                {
+                    allBlogPosts.map((post: any) => (
+                        <BlogPostCard
+                            title={post.frontmatter.title}
+                            url={post.url}
+                        />
+                    ))
+                }
+            </ul>
+            {
+                // thumbnailList.map((tutorial) => (
+                //     <TutorialCard
+                //         thumbnailPath={tutorial.src}
+                //         title={tutorial.title}
+                //         postUrl={tutorial.postUrl}
+                //     />
+                // ))
+            }
+        </div>
+    </section>
+</div>
