@@ -7,7 +7,7 @@ author: 'Rika from Rika LADS Studio'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-category: "Memories"
+categories: ["Memories"]
 tags: ["lads", "rika memories"]
 ---
 
