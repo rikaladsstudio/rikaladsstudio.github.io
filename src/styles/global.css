@@ -352,7 +352,8 @@ body {
 
 /* ── MAKEUP TUTORIALS CONTENT ── */
 
-#makeup-tutorials-toolbar {
+#makeup-tutorials-toolbar,
+#blog-posts-toolbar {
     display: flex;
     flex-direction: column;
     margin-bottom: 1.6rem;
@@ -392,7 +393,8 @@ body {
 }
 
 #makeup-tutorials-container .tutorial-card img,
-#photo-gallery-container .photo-card img {
+#photo-gallery-container .photo-card img,
+#blog-posts-container .blog-card img {
     width: 100%;
     height: auto;
     display: block;
@@ -403,7 +405,8 @@ body {
 }
 
 .tutorial-card:hover img,
-.photo-card:hover img {
+.photo-card:hover img,
+.blog-card:hover img {
     filter: brightness(1.05) saturate(1.05);
     transform: scale(1.08);
 }
@@ -695,6 +698,66 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* ── BLOG POSTS CONTENT ── */
+
+#blog-posts-container .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+#blog-posts-container .blog-card a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+#blog-posts-container .blog-card .card-image {
+    break-inside: avoid;
+    display: block;
+    margin: 0 0 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 0 0;
+    border-bottom: 4px solid var(--white);
+}
+
+#blog-posts-container .card-body .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
+#blog-posts-container .card-body .category {
+    color: var(--accent);
+}
+
+#blog-posts-container .card-body .date {
+    color: var(--count-text-color);
+}
+
+
+#blog-posts-container .card-body .center {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text-color);
+    margin-bottom: 4px;
+}
+
+#blog-posts-container .card-body .bottom {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
+
+
 /* ── TAGS PAGE ── */
 
 
@@ -810,6 +873,12 @@ footer a:focus-visible {
     #makeup-tutorials-container .grid,
     #photo-gallery-container .grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    #blog-posts-container .grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 60px;
+        row-gap: 30px;
     }
 
     .hero .hero-sub {
@@ -938,6 +1007,11 @@ footer a:focus-visible {
         padding: 2rem 0.6rem 0.4rem;
     }
 
+    #blog-posts-container .grid {
+        column-gap: 20px;
+        row-gap: 30px;
+    }
+
     #makeup-tutorials-container .card-title {
         font-size: 1rem;
     }
@@ -1005,6 +1079,10 @@ footer a:focus-visible {
 
     #filter-section {
         width: 85%;
+    }
+
+    #blog-posts-container .grid {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
@@ -1189,6 +1267,10 @@ footer a:focus-visible {
 
 @media (max-width: 180px) {
     .filter-pills {
+        flex-direction: column;
+    }
+
+    #blog-posts-container .top {
         flex-direction: column;
     }
 }

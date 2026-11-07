@@ -1,15 +1,29 @@
 ---
+import { formatDate } from "../scripts/utils/date-format";
 const { title, url, imageUrl, category, datePublished, minutesToRead, body } =
     Astro.props;
 ---
 
-<li>
-    <a href={url}>
-        <!-- <img src={imageUrl} alt={title} /> -->
-        <h3>{title}</h3>
-        <p>{category}</p>
-        <p>{datePublished}</p>
-        <p>{minutesToRead}</p>
-        <p>{body}</p>
+<div class="blog-card">
+    <a href={`${url}`} target="_blank" aria-label={`View "${title}" blog post`}>
+        <div class="card-image">
+            <img
+                src={imageUrl}
+                alt={title}
+                onerror="this.onerror=null; this.src='/images/placeholder_500x400.webp'"
+                loading="lazy"
+                width="600px"
+                height="300px"
+            />
+        </div>
+
+        <div class="card-body">
+            <div class="top">
+                <p class="category">{category}</p>
+                <p class="date">{formatDate(datePublished)}</p>
+            </div>
+            <div class="center">{title}</div>
+            <div class="bottom">{minutesToRead} ▸</div>
+        </div>
     </a>
-</li>
+</div>
